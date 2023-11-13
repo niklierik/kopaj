@@ -1,7 +1,16 @@
 import { Body, Controller, Post, Req } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import { IsDate, IsNumber } from 'class-validator';
-import { LoginDto } from './login.dto';
+
+export class LoginDto {
+    username: string;
+    @Type(() => Number)
+    @IsNumber()
+    asd: number;
+    @Type(() => Date)
+    @IsDate()
+    date: Date;
+}
 
 @Controller()
 export class AppController {

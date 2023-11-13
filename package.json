@@ -26,7 +26,9 @@
     "@types/lodash": "^4.14.201",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "date-fns": "^2.30.0",
     "lodash": "^4.17.21",
+    "nest-winston": "^1.9.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
