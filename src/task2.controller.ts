@@ -10,10 +10,11 @@ import {
 import { Request, Response } from 'express';
 import * as getRawBody from 'raw-body';
 import { fibonacci } from './fibonacci';
+import { reverseFactorial } from './reverse-factorial';
 export class Task2Query {}
 export class Task2Body {}
 
-@Controller('task2')
+@Controller('ground/task2')
 export class Task2Controller {
     @Post()
     async task2(
@@ -28,6 +29,7 @@ export class Task2Controller {
     ) {
         const raw = await getRawBody(req);
         const text = raw.toString('utf-8');
-        return fibonacci(text);
+        return reverseFactorial(Number(text));
+        // return fibonacci(text);
     }
 }

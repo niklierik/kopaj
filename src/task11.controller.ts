@@ -12,7 +12,7 @@ import { Request, Response } from 'express';
 export class Task11Query {}
 export class Task11Body {}
 
-@Controller('task11')
+@Controller('level3/task2')
 export class Task11Controller {
     @Post() async task11(
         @Query()

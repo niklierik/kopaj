@@ -8,11 +8,12 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import * as getRequestBody from 'raw-body';
 
 export class Task5Query {}
 export class Task5Body {}
 
-@Controller('task5')
+@Controller('level1/task2')
 export class Task5Controller {
     @Post()
     async task5(
@@ -25,6 +26,33 @@ export class Task5Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        const cardNumbers = [
+            'A',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            '10',
+            'J',
+            'K',
+            'Q',
+        ];
+        const cardSuits = ['S', 'H', 'C', 'D'];
+        const mul = cardNumbers
+            .map(num => cardSuits.map(suit => num + suit))
+            .flat();
+        mul.push('JK');
+
+        const text = (await getRequestBody(req)).toString('utf-8');
+        const cards = text.split(' ');
+        const missing = mul.filter(cardType => {
+            return !cards.includes(cardType);
+        });
+        const result = missing.sort().join(' ');
+        return result;
     }
 }

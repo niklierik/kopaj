@@ -13,10 +13,10 @@ import * as getRawBody from 'raw-body';
 export class Task1Query {}
 export class Task1Body {}
 
-@Controller('task1')
+@Controller('ground/task1')
 export class Task1Controller {
     @Post()
-    @HttpCode(201)
+    @HttpCode(200)
     async task1(
         @Query()
         query: Task1Query,
@@ -27,6 +27,6 @@ export class Task1Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        return '';
     }
 }

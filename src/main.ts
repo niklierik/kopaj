@@ -4,6 +4,14 @@ import { ValidationPipe } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { isInteger } from 'lodash';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import * as getResBody from 'raw-body';
+
+import { Request } from 'express';
+
+export async function reqToString(req: Request) {
+    const text = (await getResBody(req)).toString();
+    return text;
+}
 
 function readPort(): number {
     try {

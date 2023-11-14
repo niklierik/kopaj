@@ -1,4 +1,3 @@
-
 import {
     Body,
     Controller,
@@ -13,7 +12,7 @@ import { Request, Response } from 'express';
 export class Task15Query {}
 export class Task15Body {}
 
-@Controller('Task15')
+@Controller('level2/bonus')
 export class Task15Controller {
     @Post()
     async task15(
@@ -29,4 +28,3 @@ export class Task15Controller {
         return Math.random() * 1000;
     }
 }
-
