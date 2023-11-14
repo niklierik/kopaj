@@ -22,6 +22,7 @@ export class Task3Body {}
 @Controller('ground/task3')
 export class Task3Controller {
     @Post()
+    @HttpCode(200)
     async task3(
         @Query()
         query: Task3Query,
@@ -57,7 +58,7 @@ export class Task3Controller {
         }
         result += this.toStr(interval.minutes, 'minute');
         if (result) {
-            result += ', ';
+            result += ' and ';
         }
         result += this.toStr(interval.seconds, 'second');
         return result;
@@ -77,6 +78,9 @@ export class Task3Controller {
     }
 
     monthToDay(months: number): number {
+        if (months === 0) {
+            return 0;
+        }
         switch (months) {
             case 1:
             case 3:
@@ -85,14 +89,14 @@ export class Task3Controller {
             case 8:
             case 10:
             case 12:
-                return 31;
+                return 31 + this.monthToDay(months - 1);
             case 2:
-                return 28;
+                return 28 + this.monthToDay(months - 1);
             case 4:
             case 6:
             case 9:
             case 11:
-                return 30;
+                return 30 + this.monthToDay(months - 1);
         }
     }
 }

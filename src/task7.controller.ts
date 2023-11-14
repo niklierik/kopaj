@@ -8,13 +8,19 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { reqToString } from './main';
+import { findPrime } from './prime';
 
 export class Task7Query {}
-export class Task7Body {}
+export class Task7Body {
+    input: number[];
+}
 
 @Controller('level2/task1')
 export class Task7Controller {
-    @Post() async task7(
+    @Post()
+    @HttpCode(200)
+    async task7(
         @Query()
         query: Task7Query,
         @Body()
@@ -24,6 +30,7 @@ export class Task7Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        const range = (dto as any).input;
+        return findPrime(range);
     }
 }

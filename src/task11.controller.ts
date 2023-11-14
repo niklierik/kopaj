@@ -14,7 +14,9 @@ export class Task11Body {}
 
 @Controller('level3/task2')
 export class Task11Controller {
-    @Post() async task11(
+    @Post()
+    @HttpCode(200)
+    async task11(
         @Query()
         query: Task11Query,
         @Body()

@@ -16,6 +16,7 @@ export class Task5Body {}
 @Controller('level1/task2')
 export class Task5Controller {
     @Post()
+    @HttpCode(200)
     async task5(
         @Query()
         query: Task5Query,
@@ -36,7 +37,7 @@ export class Task5Controller {
             '7',
             '8',
             '9',
-            '10',
+            'T',
             'J',
             'K',
             'Q',

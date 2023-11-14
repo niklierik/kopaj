@@ -15,6 +15,7 @@ export class Task16Body {}
 @Controller('level3/bonus')
 export class Task16Controller {
     @Post()
+    @HttpCode(200)
     async task16(
         @Query()
         query: Task16Query,

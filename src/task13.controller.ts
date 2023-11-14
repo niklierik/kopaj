@@ -15,6 +15,7 @@ export class Task13Body {}
 @Controller('ground/bonus')
 export class Task13Controller {
     @Post()
+    @HttpCode(200)
     async task13(
         @Query()
         query: Task13Query,
@@ -25,6 +26,6 @@ export class Task13Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        return '2019-07-04';
     }
 }

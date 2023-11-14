@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-import * as morse from 'morse';
 import { reqToString } from './main';
 import { decodeMorse } from './morse';
 
@@ -19,6 +18,7 @@ export class Task4Body {}
 @Controller('level1/task1')
 export class Task4Controller {
     @Post()
+    @HttpCode(200)
     async task4(
         @Query()
         query: Task4Query,
@@ -30,7 +30,8 @@ export class Task4Controller {
         res: Response,
     ) {
         const text = await reqToString(req);
-        return decodeMorse(text);
+        const morse = decodeMorse(text);
+        return morse;
         if (text.includes('.') && text.includes('-')) {
             const decoded = morse.decode(text);
             return decoded.join(' ');

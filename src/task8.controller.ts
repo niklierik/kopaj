@@ -14,7 +14,9 @@ export class Task8Body {}
 
 @Controller('level2/task2')
 export class Task8Controller {
-    @Post() async task8(
+    @Post()
+    @HttpCode(200)
+    async task8(
         @Query()
         query: Task8Query,
         @Body()

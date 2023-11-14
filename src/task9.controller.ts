@@ -8,13 +8,17 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { chess } from './chess';
+import { reqToString } from './main';
 
 export class Task9Query {}
 export class Task9Body {}
 
 @Controller('level2/task3')
 export class Task9Controller {
-    @Post() async task9(
+    @Post()
+    @HttpCode(200)
+    async task9(
         @Query()
         query: Task9Query,
         @Body()
@@ -24,6 +28,9 @@ export class Task9Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        const text = await reqToString(req);
+
+        const board = chess(text);
+        return board;
     }
 }

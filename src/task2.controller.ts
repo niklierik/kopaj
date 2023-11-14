@@ -17,6 +17,7 @@ export class Task2Body {}
 @Controller('ground/task2')
 export class Task2Controller {
     @Post()
+    @HttpCode(200)
     async task2(
         @Query()
         query: Task2Query,
