@@ -8,6 +8,7 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import * as getRawBody from 'raw-body';
 
 export class Task1Query {}
 export class Task1Body {}
@@ -26,6 +27,8 @@ export class Task1Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
+        const raw = await getRawBody(req);
+        const text = raw.toString('utf-8');
         return Math.random() * 1000;
     }
 }
