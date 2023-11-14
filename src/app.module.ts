@@ -15,6 +15,9 @@ import * as winston from 'winston';
 import { Task11Controller } from './task11.controller';
 import { Task12Controller } from './task12.controller';
 import { Task13Controller } from './task13.controller';
+import { Task14Controller } from './task14.controller';
+import { Task15Controller } from './task15.controller';
+import { Task16Controller } from './task16.controller';
 
 @Module({
     imports: [
@@ -47,6 +50,9 @@ import { Task13Controller } from './task13.controller';
         Task11Controller,
         Task12Controller,
         Task13Controller,
+        Task14Controller,
+        Task15Controller,
+        Task16Controller,
     ],
     providers: [],
 })
