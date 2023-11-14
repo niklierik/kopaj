@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import { IsDate, IsNumber } from 'class-validator';
 
@@ -12,9 +12,23 @@ export class LoginDto {
     date: Date;
 }
 
+export class ListDto {
+    @Type(() => Number)
+    num: number;
+}
+
 @Controller()
 export class AppController {
     constructor() {}
+
+    @Get('list')
+    list(
+        @Query()
+        listDto: ListDto,
+    ) {
+        listDto.num++;
+        return listDto;
+    }
 
     @Post('/login')
     login(@Body() loginDto: LoginDto, @Req() req: Request) {

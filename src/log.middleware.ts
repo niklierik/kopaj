@@ -50,48 +50,5 @@ export class AppLoggerMiddleware implements NestMiddleware {
         );
 
         next();
-
-        // https://yflooi.medium.com/nestjs-request-and-response-logging-with-middleware-b486121e4907
-        const rawResponse = res.write;
-        const rawResponseEnd = res.end;
-        const chunkBuffers = [];
-        res.write = (...chunks) => {
-            const resArgs = [];
-            for (let i = 0; i < chunks.length; i++) {
-                resArgs[i] = chunks[i];
-                if (!resArgs[i]) {
-                    res.once('drain', res.write);
-                    i--;
-                }
-            }
-            if (resArgs[0]) {
-                chunkBuffers.push(Buffer.from(resArgs[0]));
-            }
-            return rawResponse.apply(res, resArgs);
-        };
-        this.logger.log(`Done writing, beginning res.end`);
-        res.end = (...chunk) => {
-            const resArgs = [];
-            for (let i = 0; i < chunk.length; i++) {
-                resArgs[i] = chunk[i];
-            }
-            if (resArgs[0]) {
-                chunkBuffers.push(Buffer.from(resArgs[0]));
-            }
-            const body = Buffer.concat(chunkBuffers).toString('utf8');
-            res.setHeader('origin', 'restjs-req-res-logging-repo');
-            const responseLog = {
-                response: {
-                    statusCode: res.statusCode,
-                    body: JSON.parse(body) || body || {},
-                    // Returns a shallow copy of the current outgoing headers
-                    headers: res.getHeaders(),
-                },
-            };
-            this.logger.log('res: ');
-            this.logger.log(JSON.stringify(responseLog));
-            rawResponseEnd.apply(res, resArgs);
-            return responseLog as unknown as Response;
-        };
     }
 }

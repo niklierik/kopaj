@@ -17,6 +17,7 @@ function readPort(): number {
         return 3000;
     }
 }
+
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { rawBody: true });
     app.useGlobalPipes(
@@ -29,4 +30,5 @@ async function bootstrap() {
     await app.listen(port);
     console.log('Listening to ' + port);
 }
+
 bootstrap();
