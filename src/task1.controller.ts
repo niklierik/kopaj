@@ -27,8 +27,6 @@ export class Task1Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        const raw = await getRawBody(req);
-        const text = raw.toString('utf-8');
         return Math.random() * 1000;
     }
 }

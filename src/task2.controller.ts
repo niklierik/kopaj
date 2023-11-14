@@ -8,6 +8,8 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import * as getRawBody from 'raw-body';
+import { fibonacci } from './fibonacci';
 export class Task2Query {}
 export class Task2Body {}
 
@@ -24,6 +26,8 @@ export class Task2Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        const raw = await getRawBody(req);
+        const text = raw.toString('utf-8');
+        return fibonacci(text);
     }
 }
