@@ -1,8 +1,20 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppLoggerMiddleware } from './log.middleware';
 import { WinstonModule } from 'nest-winston';
+import { Task1Controller } from './task1.controller';
+import { Task2Controller } from './task2.controller';
+import { Task3Controller } from './task3.controller';
+import { Task4Controller } from './task4.controller';
+import { Task5Controller } from './task5.controller';
+import { Task6Controller } from './task6.controller';
+import { Task7Controller } from './task7.controller';
+import { Task8Controller } from './task8.controller';
+import { Task9Controller } from './task9.controller';
+import { Task10Controller } from './task10.controller';
 import * as winston from 'winston';
+import { Task11Controller } from './task11.controller';
+import { Task12Controller } from './task12.controller';
+import { Task13Controller } from './task13.controller';
 
 @Module({
     imports: [
@@ -21,7 +33,21 @@ import * as winston from 'winston';
             ],
         }),
     ],
-    controllers: [AppController],
+    controllers: [
+        Task1Controller,
+        Task2Controller,
+        Task3Controller,
+        Task4Controller,
+        Task5Controller,
+        Task6Controller,
+        Task7Controller,
+        Task8Controller,
+        Task9Controller,
+        Task10Controller,
+        Task11Controller,
+        Task12Controller,
+        Task13Controller,
+    ],
     providers: [],
 })
 export class AppModule implements NestModule {
