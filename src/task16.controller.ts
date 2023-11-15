@@ -8,6 +8,7 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { reqToString } from './main';
 
 export class Task16Query {}
 export class Task16Body {}
@@ -26,6 +27,10 @@ export class Task16Controller {
         @Res({ passthrough: true })
         res: Response,
     ) {
-        return Math.random() * 1000;
+        const text = await reqToString(req);
+        return text
+            .split('')
+            .map(t => (t === ' ' && Math.random() > 0.5 ? '-' : ' '))
+            .join('');
     }
 }

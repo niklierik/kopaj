@@ -18,6 +18,7 @@ import { Task13Controller } from './task13.controller';
 import { Task14Controller } from './task14.controller';
 import { Task15Controller } from './task15.controller';
 import { Task16Controller } from './task16.controller';
+import { FinalBoss } from './boss';
 
 @Module({
     imports: [
@@ -53,6 +54,7 @@ import { Task16Controller } from './task16.controller';
         Task14Controller,
         Task15Controller,
         Task16Controller,
+        FinalBoss,
     ],
     providers: [],
 })

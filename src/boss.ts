@@ -8,27 +8,24 @@ import {
     Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { reqToString } from './main';
-import { csvJson } from './papa';
 
-export class Task12Query {}
-export class Task12Body {}
+export class BossQuery {}
+export class BossBody {}
 
-@Controller('level3/task3')
-export class Task12Controller {
+@Controller('final-boss')
+export class FinalBoss {
     @Post()
     @HttpCode(200)
-    async task12(
+    async task10(
         @Query()
-        query: Task12Query,
+        query: BossQuery,
         @Body()
-        dto: Task12Body,
+        dto: BossBody,
         @Req()
         req: Request,
         @Res({ passthrough: true })
         res: Response,
     ) {
-        const text = await reqToString(req);
-        return csvJson(text);
+        return 'I accept the terms and conditions';
     }
 }
